@@ -13,22 +13,31 @@ while (bombNumbers.length < 16) {
 console.log(bombNumbers);
 
 
-
-
-
-
 /* In seguito deve chiedere all'utente (100 - 16) volte di inserire un numero alla volta, sempre compreso tra 1 e 100. */
-// var userNumber;
-// var userChoices = [];
-// i = 0;
-// while (i < 5) {
-// userNumber = parseInt(prompt("Inserisci un numero da 1 a 100"));
+var userNumber;
+var userChoices = [];
+var maxChoises = 84;
 
-// console.log(userNumber);
-// i++;
-// }
-// userChoices.push(userNumber);
-// console.log(userChoices);
+/* inizializzo fuori dal ciclo while la variabile gameOver false */
+var gameOver = false;
+
+while (userChoices.length < 84 && gameOver == false) {
+
+    var userNumber
+    do {
+        userNumber = parseInt(prompt("Inserisci un numero compreso tra 1 e 100"));
+    } while (isNaN(userNumber) || userNumber <1 || userNumber > 100);
+    
+    /* gameOver diventerà true quando il numero inserito dall'utente, quindi userNumber, è presente tra i numeri dell'array delle bombe, quindi bombNumbers */
+    if (isInArray(userNumber, bombNumbers)) {
+        gameOver = true;
+    } else if (!isInArray(userNumber, userChoices)) {
+        userChoices.push(userNumber);
+    }
+    
+}
+alert("Game Over\n il to punteggio è:" + userChoices.length);
+console.log(userChoices);
 
 
 /* L'utente non può inserire più volte lo stesso numero. */
